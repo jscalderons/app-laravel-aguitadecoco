@@ -41,7 +41,8 @@
             }
 
             .content {
-                text-align: center;
+                /* text-align: center; */
+                padding: 4rem 2.5rem;
             }
 
             .title {
@@ -58,13 +59,29 @@
                 text-transform: uppercase;
             }
 
+            .api-link {
+                border: 1px solid lightgray;
+                padding: 1rem;
+                margin-bottom: .5rem;
+                display: inline-block;
+            }
+
+            .api-link h3,
+            .api-link p {
+                margin: 0;
+            }
+
+            .api-link span {
+                color: blue;
+            }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -83,16 +100,29 @@
                 <div class="title m-b-md">
                     {{ env('APP_NAME') }}
                 </div>
-{{-- 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div> --}}
+
+                <section>
+                    <div class="api-link">
+                        <h3>GET: Listar Products</h3>
+                        <p>Obtener lista de productos</p>
+                        <span>{{ env('APP_URL') }}/api/products </span>
+                    </div>
+                    <div class="api-link">
+                        <h3>POST: Crear Producto</h3>
+                        <p>Crea un producto</p>
+                        <span>{{ env('APP_URL') }}/api/product </span>
+                    </div>
+                    <div class="api-link">
+                        <h3>GET: Lista Promociones</h3>
+                        <p>Obtiene la lista de promociones vigentes</p>
+                        <span>{{ env('APP_URL') }}/api/promotions </span>
+                    </div>
+                    <div class="api-link">
+                        <h3>POST: Crear Promocion</h3>
+                        <p>Crea una promoción</p>
+                        <span>{{ env('APP_URL') }}/api/promotion </span>
+                    </div>
+                </section>
             </div>
         </div>
     </body>

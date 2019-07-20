@@ -4,10 +4,13 @@ namespace App\Http\Controllers\api\v1;
 
 use \App\Product;
 use Illuminate\Http\Request;
+use \App\Http\Traits\RestTrait;
 use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
+    use RestTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return response(Product::paginate(10));
+        return$this->successResponse(Product::all());
     }
 
     /**
@@ -26,9 +29,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create($request->input());
+        if (Product::create($request->input())) {
+            return $this->createdResponse();   
+        }
 
-        return response($product);   
+        return $this->errorResponse('No se pudo crear el registro.');
     }
 
     /**
