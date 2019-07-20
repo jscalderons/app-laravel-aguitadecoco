@@ -4,10 +4,13 @@ namespace App\Http\Controllers\api\v1;
 
 use \App\Promotion;
 use Illuminate\Http\Request;
+use \App\Http\Traits\RestTrait;
 use App\Http\Controllers\Controller;
 
 class PromotionController extends Controller
 {
+    use RestTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -26,9 +29,20 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
-        $promotion = Promotion::create($request->input());
+        $promotion = Promotion::create([
+            'description' => $request->description,
+            'discount' => $request->discount,
+            'started_at' => $request->startedAt,
+            'ended_at' => $request->endedAt
+        ]);
 
-        return response($promotion);
+        if ($products = $request->products) {
+            foreach ($products as $product) {
+                $promotion->products()->attach($product['id']);
+            }
+        }
+
+        return $this->createdResponse($promotion);
     }
 
     public function attach_product(Request $request)
