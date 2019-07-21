@@ -41,8 +41,7 @@
             }
 
             .content {
-                /* text-align: center; */
-                padding: 4rem 2.5rem;
+                text-align: center;
             }
 
             .title {
@@ -59,70 +58,17 @@
                 text-transform: uppercase;
             }
 
-            .api-link {
-                border: 1px solid lightgray;
-                padding: 1rem;
-                margin-bottom: .5rem;
-                display: inline-block;
-            }
-
-            .api-link h3,
-            .api-link p {
-                margin: 0;
-            }
-
-            .api-link span {
-                color: blue;
-            }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
         </style>
     </head>
     <body>
-        <div class="position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
+        <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
                     {{ env('APP_NAME') }}
                 </div>
-
-                <section>
-                    <div class="api-link">
-                        <h3>GET: Listar Products</h3>
-                        <p>Obtener lista de productos</p>
-                        <span>{{ env('APP_URL') }}/api/products </span>
-                    </div>
-                    <div class="api-link">
-                        <h3>POST: Crear Producto</h3>
-                        <p>Crea un producto</p>
-                        <span>{{ env('APP_URL') }}/api/product </span>
-                    </div>
-                    <div class="api-link">
-                        <h3>GET: Lista Promociones</h3>
-                        <p>Obtiene la lista de promociones vigentes</p>
-                        <span>{{ env('APP_URL') }}/api/promotions </span>
-                    </div>
-                    <div class="api-link">
-                        <h3>POST: Crear Promocion</h3>
-                        <p>Crea una promoción</p>
-                        <span>{{ env('APP_URL') }}/api/promotion </span>
-                    </div>
-                </section>
             </div>
         </div>
     </body>
